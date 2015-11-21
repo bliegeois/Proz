@@ -48,7 +48,8 @@ fun {BuildDecisionTree L}
 	 else {ListCount L QL.2 {Append LC [{Count L QL.1 0}]}} end
       end
       fun {Build L QL}
-	 if QL==nil then leaf({PlayersName L nil})
+	 if {Length L}==1 then leaf({PlayersName L nil})
+	 elseif QL==nil then leaf({PlayersName L nil})
 	 else
 	    LC N BQ QLNew in
 	    LC={ListCount L QL nil}
