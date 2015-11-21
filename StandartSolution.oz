@@ -76,8 +76,7 @@ local
    in
       case Tree of leaf(R) then Result = {ProjectLib.found R}
       [] question(Q true:T1 false:T2) then
-	 local X=Tree.{ProjectLib.askQuestion Q}in
-	    {GameDriver X X} end
+	    {GameDriver Tree.{ProjectLib.askQuestion Q} Result}
       end
       %% Toujours retourner unit
       unit
