@@ -1,9 +1,9 @@
 % A TESTER!
 declare ProjectLib in
-[ProjectLib] = {Link ["ProjectLib.ozf"]}
+[ProjectLib] = {Link ["/Users/Benjamin/Desktop/Proz/ProjectLib.ozf"]}
 
 local
-   ListOfPersons = {ProjectLib.loadDatabase file "database.txt"}
+   L = {ProjectLib.loadDatabase file "/Users/Benjamin/Desktop/Proz/database.txt"}
 
    fun {BuildDecisionTree L}
 % construit l'arbre de questions de hauteur presque minimale
@@ -70,7 +70,7 @@ local
       end
    end
 
-   fun {GameDriver Tree} 
+   fun {GameDriver Tree}
       Result
    in
       case Tree of leaf(R) then Result = {ProjectLib.found R}
@@ -84,7 +84,7 @@ local
 in
    %% Lancer le jeu
    {ProjectLib.play opts(builder:BuildDecisionTree
-			 persons:ListOfPersons
+			 persons:L
 			 driver:GameDriver
 			 %allowUnknown:true %% Décommenter pour ajouter le bouton "Je ne sais pas"
 			 %oopsButton:true %% Décommenter pour ajouter le bouton "Oups, j'ai fait une erreur"
