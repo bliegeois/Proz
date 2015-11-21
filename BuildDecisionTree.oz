@@ -54,9 +54,8 @@ local
 	    else {ListCount L QL.2 {Append LC [{Count L QL.1 0}]}} end
 	 end
 	 fun {Build L QL}
-	    if {Length L}==0 then leaf({PlayersName L nil})
-	    elseif {Length L}==1 then leaf({PlayersName L nil})
-	    elseif QL==nil then leaf({PlayersName L nil})
+	    if L==nil orelse {Length L}==1 orelse QL==nil
+	    then leaf({PlayersName L nil})
 	    else
 	       LC N BQ QLNew in
 	       LC={ListCount L QL nil}
