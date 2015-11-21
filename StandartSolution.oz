@@ -5,7 +5,7 @@ declare ProjectLib in
 local
    ListOfPersons = {ProjectLib.loadDatabase file "database.txt"}
 
-   fun {BuildDecisionTree ListOfPersons}
+   fun {BuildDecisionTree L}
 % construit l'arbre de questions de hauteur presque minimale
       QL={Arity L.1}.2 in
       local
