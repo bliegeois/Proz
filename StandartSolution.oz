@@ -55,7 +55,8 @@ local
 	    else {ListCount L QL.2 {Append LC [{Count L QL.1 0}]}} end
 	 end
 	 fun {Build L QL}
-	    if QL==nil then leaf({PlayersName L nil})
+	    if {Length L}==1 then leaf({PlayersName L nil})
+	    elseif QL==nil then leaf({PlayersName L nil})
 	    else
 	       LC N BQ QLNew in
 	       LC={ListCount L QL nil}
@@ -76,7 +77,7 @@ local
       case Tree of leaf(R) then Result = {ProjectLib.found R}
       [] question(Q true:T1 false:T2) then
 	 local X=Tree.{ProjectLib.askQuestion Q}in
-	 {GameDriver X X} end
+	    {GameDriver X X} end
       end
       %% Toujours retourner unit
       unit
