@@ -10,7 +10,8 @@ local
       %%       contenues dans leur champ respectif
       %% @post: retourne un arbre de questions presque optimal de forme
       %%        <DecisionTree> ::= leaf(<List[Atom]>) une liste de nom de personnes
-      %%                           | question(<Atom> true:<DecisionTree> false:<DecisionTree>)
+      %%                           | question(<Atom> true:<DecisionTree> false:<DecisionTree> unknown:<DecisionTree>
+      %%                                             oops:<List> method:<Procedure>)
       QL={Arity L.1}.2 in
       local
 	 fun {Count L Q N}
