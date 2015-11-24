@@ -66,7 +66,7 @@ local
 	    end
 	 end
       in
-	 {Build L QL nil nil}
+	 {Build L QL L QL}
       end
    end
    fun {GameDriver Tree}
