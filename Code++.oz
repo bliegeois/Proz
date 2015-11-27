@@ -25,6 +25,15 @@ local
 	       else {Count L.2 Q N} end
 	    end
 	 end
+	 fun {ListCount L QL LC}
+	    %% @pre: L est une liste comme décrite dans BuildDecisionTree
+	    %%       QL est une liste de questions
+	    %%       LC est une liste utilisée comme accumulateur
+	    %% @post: retourne une liste avec le nombre de réponses positives par les joueurs
+	    %%        contenus dans L pour chaque question de QL
+	    if QL==nil then LC
+	    else {ListCount L QL.2 {Append LC [{Count L QL.1 0}]}} end
+	 end
 	 fun {Opti L B I N}
 	    %% @pre: L est une liste qui contient le nombre de réponses positives de chaque question
 	    %%       B est un entier positif
@@ -74,15 +83,6 @@ local
 	    %% @post: retourne une liste des noms des joueurs contenus dans L
 	    if L==nil then PL
 	    else {PlayersName L.2 L.1.1|PL} end
-	 end
-	 fun {ListCount L QL LC}
-	    %% @pre: L est une liste comme décrite dans BuildDecisionTree
-	    %%       QL est une liste de questions
-	    %%       LC est une liste utilisée comme accumulateur
-	    %% @post: retourne une liste avec le nombre de réponses positives par les joueurs
-	    %%        contenus dans L pour chaque question de QL
-	    if QL==nil then LC
-	    else {ListCount L QL.2 {Append LC [{Count L QL.1 0}]}} end
 	 end
 	 fun {Build L QL L2 QL2}
 	    %% @pre: L est une liste comme décrite dans BuildDecisionTree
