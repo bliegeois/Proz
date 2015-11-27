@@ -35,7 +35,7 @@ local
 	    O=({Length L} div 2) in
 	    if L==nil then N
 	    else
-	       if {Abs L.1-O}<{Abs B-O} then {Opti L.2 L.1 I+1 I}
+	       if {Abs L.1-O}<{Abs B-O} orelse {Abs L.1-O}<{Abs B-O}+({Length L} mod 2) then {Opti L.2 L.1 I+1 I}
 	       else {Opti L.2 B I+1 N} end
 	    end
 	 end
