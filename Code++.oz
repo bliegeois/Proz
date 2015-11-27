@@ -98,7 +98,7 @@ local
 	       BQ={Get QL N 1}
 	       QLNew={Remove QL nil N 1}
 	       question(BQ true:{Build {SelectPlayers L BQ true nil} QLNew L QL} false:{Build {SelectPlayers L BQ false nil} QLNew L QL}
-			unknown:{Build L QLNew L QL} oops:[L2 QL2] method:Build)
+			unknown:[L QLNew] oops:[L2 QL2] function:Build)
 	    end
 	 end
       in
@@ -110,9 +110,10 @@ local
    in
       case Tree
       of leaf(R) then Result = {ProjectLib.found R}
-      [] question(Q true:T1 false:T2 unknown:T3 oops:L method:M) then
+      [] question(Q true:T1 false:T2 unknown:L1 oops:L2 function:F) then
 	 Ans={ProjectLib.askQuestion Q} in
-	 if Ans==oops then {GameDriver {M L.1 L.2.1 L.1 L.2.1} Result}
+	 if Ans==oops then {GameDriver {F L2.1 L2.2.1 L2.1 L2.2.1} Result}
+	 elseif Ans==unknown then {GameDriver {F L1.1 L1.2.1 L1.1 L1.2.1} Result}
 	 else {GameDriver Tree.Ans Result} end
       end
       %% Toujours retourner unit
@@ -124,6 +125,5 @@ in
 			 persons:ListOfPersons
 			 driver:GameDriver
 			 allowUnknown:true
-			 oopsButton:true
-			)}
+			 oopsButton:true)}
 end
