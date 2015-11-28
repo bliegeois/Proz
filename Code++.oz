@@ -106,6 +106,9 @@ local
       end
    end
    fun {GameDriver Tree}
+      %% @pre: Tree est un arbre tel que construit par BuildDecisionTree
+      %% @post: Renvoie la liste des joueurs répondant true aux questions
+      %%        posées en parcourant l'arbre de décision.
       Result
    in
       case Tree
