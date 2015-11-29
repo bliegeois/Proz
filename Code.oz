@@ -1,8 +1,8 @@
 local ProjectLib in
-[ProjectLib] = {Link ["/Users/Vianney/Documents/LFSAB12/Info/Projet/ProjectLib.ozf"]}
+[ProjectLib] = {Link ["ProjectLib.ozf"]}
 
 local
-   ListOfPersons = {ProjectLib.loadDatabase file "/Users/Vianney/Documents/LFSAB12/Info/Projet/database.txt"}
+   ListOfPersons = {ProjectLib.loadDatabase file "database.txt"}
 
    fun {BuildDecisionTree L}
       %% @pre: L est une liste de record de forme person(<Atom> <Atom>:<boolean> <Atom>:<boolean> ...)
