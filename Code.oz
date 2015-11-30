@@ -92,15 +92,18 @@ local
 	    %%       L2 est la liste des joueurs retenus à la séparation précédente
 	    %%       QL2 est la liste des questions restantes à la séparation précédente
 	    %% @post: retourne un arbre de décision presque optimal
-	    if L==nil orelse {Length L}==1 orelse QL==nil then leaf({PlayersName L nil})
+	    if QL==nil then leaf({PlayersName L nil})
 	    else
 	       LC N BQ QLNew in
 	       LC={ListCount L QL nil}
 	       N={Opti LC {Length LC}+1 1 1}
 	       BQ={Get QL N 1}
 	       QLNew={Remove QL nil N 1}
-	       question(BQ true:{Build {SelectPlayers L BQ true nil} QLNew L QL} false:{Build {SelectPlayers L BQ false nil} QLNew L QL}
-			unknown:[L QLNew] oops:[L2 QL2] function:Build)
+	       if {SelectPlayers L BQ true nil}==nil orelse {SelectPlayers L BQ false nil}==nil then leaf({PlayersName L nil})
+	       else
+		  question(BQ true:{Build {SelectPlayers L BQ true nil} QLNew L QL} false:{Build {SelectPlayers L BQ false nil} QLNew L QL}
+			   unknown:[L QLNew] oops:[L2 QL2] function:Build)
+	       end
 	    end
 	 end
       in
