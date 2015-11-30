@@ -34,20 +34,21 @@ local
 	    if QL==nil then LC
 	    else {ListCount L QL.2 {Append LC [{Count L QL.1 0}]}} end
 	 end
-	 fun {Opti L B I N}
+	 fun {Opti L B I N LL}
 	    %% @pre: L est une liste qui contient le nombre de réponses positives de chaque question
 	    %%       B est un entier positif
 	    %%       I est un entier utilisé comme itérateur
 	    %%       N est un entier utilisé comme accumulateur
+	    %%       LL est la longueur de la liste initiale
 	    %% @post: retourne l'indice de la question dont le nombre de réponses positives
 	    %%        est le plus proche de la moitié du nombre de joueurs
-	    O=({Length L} div 2) in
+	    O=(LL div 2) in
 	    if L==nil then N
 	    else
-	       if {Abs L.1-O}<{Abs B-O} orelse {Abs L.1-O}<{Abs B-O}+({Length L} mod 2) then {Opti L.2 L.1 I+1 I}
-		  %% l'expression "+({Length L} mod 2)" sert à prendre en compte
+	       if {Abs L.1-O}<{Abs B-O} orelse {Abs L.1-O}<{Abs B-O}+(LL mod 2) then {Opti L.2 L.1 I+1 I LL}
+		  %% l'expression "+(LL mod 2)" sert à prendre en compte
 		  %% les répartitions dans les listes de longueur impaire
-	       else {Opti L.2 B I+1 N} end
+	       else {Opti L.2 B I+1 N LL} end
 	    end
 	 end
 	 fun {Get L N I}
@@ -96,7 +97,7 @@ local
 	    else
 	       LC N BQ QLNew in
 	       LC={ListCount L QL nil}
-	       N={Opti LC {Length LC}+1 1 1}
+	       N={Opti LC {Length LC}+1 1 1 {Length LC}}
 	       BQ={Get QL N 1}
 	       QLNew={Remove QL nil N 1}
 	       if {SelectPlayers L BQ true nil}==nil orelse {SelectPlayers L BQ false nil}==nil then leaf({PlayersName L nil})
